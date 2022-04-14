@@ -17,7 +17,7 @@ bucket = "your bucket"
 
 
 # Creating a VideoCapture object to read the video
-cap = cv.VideoCapture('/home/pi/Desktop/imp/vid sample 20220324.mp4')
+cap = cv.VideoCapture(0)
 
 
 # Loop until the end of the video
