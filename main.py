@@ -12,8 +12,8 @@ from influxdb_client.client.write_api import SYNCHRONOUS
 
 # You can generate an API token from the "API Tokens Tab" in the UI
 token = "your token"
-org = "utm"
-bucket = "electricalmeter/autogen"
+org = "your organization"
+bucket = "your bucket"
 
 
 # Creating a VideoCapture object to read the video
