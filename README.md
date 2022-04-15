@@ -32,7 +32,12 @@ The Methodology is the part where i show you my progress the system for your own
 
 without further ado lets get started 
 
-### 
+### Install Raspbiam OS
+
+There are many single board computer that we can use for the system such as the jetson nano and other types of single board computer,to do so with any types of it we need to install the operating system in my case since im using raspberry pi 3 i will be instll the *raspbian* os.
+
+first we need to download the raspbian imager from the <a href="https://www.raspberrypi.com/software/" target="_blank">here</a>
+
 
   
   
