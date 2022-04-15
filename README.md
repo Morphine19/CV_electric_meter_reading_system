@@ -32,16 +32,20 @@ The Methodology is the part where i show you my progress the system for your own
 
 without further ado lets get started 
 
-### Install Raspbiam OS
+### Install Raspbian OS
 
 There are many single board computer that we can use for the system such as the jetson nano and other types of single board computer,to do so with any types of it we need to install the operating system in my case since im using raspberry pi 3 i will be instll the *raspbian* os.there are several equipments we need in order to prepare ourself for the task.
+
 **the necessities** 
+
 1. raspberry pi 
 2. microSD card 
 3. monitor keyboard and mouse.
 4. Computer with any types of OS (Windows, Mac, linux and even raspbian OS)
 
-first, we need to download and install the raspbian imager from the <a href="https://www.raspberrypi.com/software/" target="_blank">here</a>. 
+first, we need to download and install the raspbian imager from the website
+
+>https://www.raspberrypi.com/software/
 
 second, we need to plug in our microSD card to the computer. you may need to use an adapter or even a card reader if you dont have any memory card slot in your PC.
 
@@ -54,9 +58,29 @@ after finish burnign raspbian to the sd card insert the SD card to the raspberry
 
 depending on your situatuion you may or may not need to use VNC viewer. If you dont know what VNC viewer is basically a remote control access for your computer so that your able to work on your raspi from your pc ,which is more convinient for some people.
 
-to install the vnc viewer first we need to go to the raspbian console and type ' hostname -I ',what the console will tell us the IP of the raspi that we will use to connect it with the host later.
+to install the vnc viewer first we need to go to the raspbian console and type 
 
-next, inside the raspbian console type *sudo raspi config* upon opening the sseeting we will go to interfacing access where we can enable VNC. then we can click OK and then click Finish. this system should tell us to reboot our system to adjust the configuration.
+> hostname -I 
+
+what the console will tell us the IP of the raspi that we will use to connect it with the host later.
+
+next, inside the raspbian console type 
+
+> sudo raspi config 
+
+upon opening the sseeting we will go to interfacing access where we can enable VNC. then we can click OK and then click Finish. this system should tell us to reboot our system to adjust the configuration.
+
+now moving on from our raspi to the host computer we need to install the VNC software from here :
+
+> https://www.realvnc.com/en/connect/download/viewer/windows/
+
+upon downloading it we need to install the app then its pretty simple from there.
+
+now you just need to type the internal IP address from the first step and type it on the search bar of VNC viewer application. To know if its works or not you should be prompted with a login window where you need to use your raspi credential if not you may need to retry from the first step.
+
+now you may access your raspi from your own PC. The issue i face while using VNC viewer is the delay which is a bit stressfull but if you have a better internet connection this should not be a huge problem.
+
+
 
 
 
