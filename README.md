@@ -1,10 +1,10 @@
 # CV_electric_meter_reading_system
 
-## Introduction
+# Introduction
 
 This repo contributes to show the process and step by step on my approach to an automated meter reading system for my Final Year Project.The project is titled "IOT BASED MONITORING SYSTEM FOR MULTIPLE SINGLE-PHASE ELECTRICAL METERS" . As mentioned the repo will include the step by step guide so you can also install the system on your single board computer in my case it will be Raspberry pi 3B. Also with every step i will also include a simple video where i demonstrate the task as a my proof of progress.
   
-## Flowchart
+# Flowchart
 
 The Following is the flowchart that ill be using for Iot System, the system is divided to several steps which can see on the image below :
   
@@ -14,8 +14,11 @@ As we can see the final flowchart is developed,but this is not the first iterati
 
 *comparison between flowchart*
 
+## video
 
-## Methodology
+*video goes here*
+
+# Methodology
 
 The Methodology is the part where i show you my progress the system for your own single board compute. I divided the step into 10 steps :
 
@@ -32,7 +35,7 @@ The Methodology is the part where i show you my progress the system for your own
 
 without further ado lets get started 
 
-### Install Raspbian OS
+## Install Raspbian OS
 
 There are many single board computer that we can use for the system such as the jetson nano and other types of single board computer,to do so with any types of it we need to install the operating system in my case since im using raspberry pi 3 i will be instll the *raspbian* os.there are several equipments we need in order to prepare ourself for the task.
 
@@ -53,8 +56,11 @@ third, we can now open the installed application and choose raspbian OS , choose
 
 after finish burnign raspbian to the sd card insert the SD card to the raspberry pi and finally we can run the raspberry pi. after plugging the raspberypi to the monitor you will be prompted with the startup session from raspberry pi where you need to determine your timezone and your credetials which is important.
 
+### Video
 
-#### installing VNC viewer 
+*video goes here*
+
+### installing VNC viewer 
 
 depending on your situatuion you may or may not need to use VNC viewer. If you dont know what VNC viewer is basically a remote control access for your computer so that your able to work on your raspi from your pc ,which is more convinient for some people.
 
@@ -79,6 +85,11 @@ upon downloading it we need to install the app then its pretty simple from there
 now you just need to type the internal IP address from the first step and type it on the search bar of VNC viewer application. To know if its works or not you should be prompted with a login window where you need to use your raspi credential if not you may need to retry from the first step.
 
 now you may access your raspi from your own PC. The issue i face while using VNC viewer is the delay which is a bit stressfull but if you have a better internet connection this should not be a huge problem.
+
+## Installing OpenCV
+
+OpenCV is a library that contain functions that are focused on Computer vision application. To install OpenCV
+
 
 
 
