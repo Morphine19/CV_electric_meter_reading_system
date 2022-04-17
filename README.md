@@ -193,6 +193,7 @@ Another important point  is setting the focus of the camera you might have to tr
 
 
 
+
   
   
 
