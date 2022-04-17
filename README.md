@@ -84,11 +84,53 @@ upon downloading it we need to install the app then its pretty simple from there
 
 now you just need to type the internal IP address from the first step and type it on the search bar of VNC viewer application. To know if its works or not you should be prompted with a login window where you need to use your raspi credential if not you may need to retry from the first step.
 
-now you may access your raspi from your own PC. The issue i face while using VNC viewer is the delay which is a bit stressfull but if you have a better internet connection this should not be a huge problem.
+now you may access your raspi from your own PC. The issue i face while using VNC viewer is the delay which is a bit stressfull but if you have a better internet connection this should not be  problem.
 
 ## Installing OpenCV
 
-OpenCV is a library that contain functions that are focused on Computer vision application. To install OpenCV
+OpenCV is a library that contain functions that are focused on Computer vision application. To install OpenCV on your raspi its really simple.
+
+first we need to install pip by running the following commands on the raspi terminal 
+
+> mkdir ~/src && cd ~/src
+> 
+>wget https://bootstrap.pypa.io/get-pip.py
+>
+>$ sudo python3 get-pip.py
+
+after installing pip we now just have to install the OpenCV by using the following command
+
+>sudo pip install opencv-contrib-python
+
+the console will load and ask do you want to install the following packages just type 'Y' and it should install will no problem.
+
+### video 
+
+*video goes here*
+
+
+##  Accesing the webcam Via OpenCV operators
+
+### Checking the Camera/webcam
+
+To check if the camera is working properly you may want to do this step, in the raspi console
+
+>sudo apt-get install fswebcam
+
+this is a basic webcam driver that works for most webcam in my case im using Logitech C270
+
+now you can plug in your camera upon plugging it you can again in your console type :
+
+>lsusb
+
+this command show every device connected on your usb port if your device name is listed that means you are ready for the next step
+
+>fswebcam --device your/desired/filepath image.jpg
+
+this should capture an image on the file you mention on command
+
+### Accesing the camera using OpenCV operator in python
+
 
 
 
