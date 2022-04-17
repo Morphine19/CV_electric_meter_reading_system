@@ -143,9 +143,33 @@ next we will use video capture to read the video
 
 >cap = cv.VideoCapture('0')
 
+now we create a loop for showing the video .
+
+> while (cap.isOpened()):
+
+to end the loop we will use this command the code basically will break the loop if press the 'q' alphabet
+
+>	if cv.waitKey(25) & 0xFF == ord('q'):
+		break
+
+now in the commands we add next wil be added in between the loop 
+
+to Capture frame-by-frame
+	
+> ret, frame = cap.read()
+
+now to display it we will use cv imshow which is a function to display image 
+
+>cv.imshow('frame', crop)
+
+now if you done it right you should see the input of the video in python
+
+### video
+
+*viddeo goes here*
 
 
-
+## Hardware setup
 
 
 
