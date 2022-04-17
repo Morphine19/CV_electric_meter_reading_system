@@ -171,6 +171,22 @@ now if you done it right you should see the input of the video in python
 
 ## Hardware setup
 
+the setup can be variative depending on your situation and materials you have at hand the following are the pictures of how i setup my device .
+
+*image of device goes here*
+
+whats important is to setup the position of the camera the camera should be facing the electrical meter parallel and the input should be clearly visualizzing the face of the meter. 
+
+Another important point  is setting the focus of the camera you might have to try and readjust your camera focus after multiple times.if your using the same webcam as i do which is the logitech C270 which where the camera focus cannot be adjusted but fortunately we can use a little trick that i follow from the video below.
+
+>https://www.youtube.com/watch?v=4Qo10_REc6U
+
+### video
+
+*video goes here*
+
+
+##
 
 
 
