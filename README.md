@@ -131,6 +131,17 @@ this should capture an image on the file you mention on command
 
 ### Accesing the camera using OpenCV operator in python
 
+now we can start using our opencv operator
+
+in your ide i use genie on raspi
+
+impor the opencv
+
+>import cv2 as cv
+
+next we will use video capture to read the video
+
+>cap = cv.VideoCapture('0')
 
 
 
