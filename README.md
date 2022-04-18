@@ -395,4 +395,12 @@ Now that we have the InfluxDB repository key installed to our Raspberry Pi, we w
 
 now thats done we can now install infludb
 
-> 
+> sudo apt install influxdb
+
+now that influxdb is successfully installed we can set the enable and start the server 
+
+>sudo systemctl unmask influxdb
+>sudo systemctl enable influxdb
+>sudo systemctl start influxdb
+
+now that we have installed influxdb we just have to access it by typing `http://localhost:8086`  in your *BROWSER* not console  
