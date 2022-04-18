@@ -597,7 +597,105 @@ The following setup and log us in to the influxdb by using our `url`,`token` and
 
 now that we can write a data into the influxdb now we will try to check if it reach the other end of the system
 
-first log in to influxdb API and head to data explorer 
+first log in to influxdb API and head to data explorer and select your buckets and your filter. If there is no problem you should be able to see your data point.
+
+if youre able to see the data in the data explorer, now you can make a dashboard by clicking `save as` and head to dashboard and you can create a new dashboard.
+
+
+now that we know how to write data to influxdb we now learn how to do a query basically were going to call the data that we input :
+
+first we call the function for the query 
+
+```
+query_api = client.query_api()
+```
+
+the following codes looks quite intimidating but it actually really simple all were doing is just specificaly mention which data were calling and assigned them to a variable.
+
+```
+query1 = ' from(bucket:"electricalmeter/autogen")\
+        |> range(start: -5m)\
+        |> filter(fn:(r) => r._measurement == "kWh")\
+        |> filter(fn: (r) => r._field == "display_usage")\
+        |> filter(fn:(r) => r.meter == "meter1" ) \
+        |> last()'
+```
+
+After finishing the filling up the filters we now going to print the data by assigning it to a table . It is printed in table form because there are possibility that there is more than 1 data points recieve.In this case we will recieve only 1 data points since we use the `last()` function which will only called the last data generated in that timeframe.
+
+```
+        result1 = client.query_api().query(org=org, query=query1)
+        results1 = []
+        for table in result1:
+            for record in table.records:
+                results1.append(record.get_value())
+        #print(results1[0])
+```
+
+After running the code we should be able to see the  value of the data from 5 minutes ago since we set the range to `-5m`(5 minutes).
+
+now that we know how write and call on influxdb we can now apply it to calculations.
+
+in my case i called to 2 query from 2 diffrent point of time to compare the diffrence between usage, after recieving the diffrence between the 2 usage i multiply it by 1444.70(which is the price of 1 kWh of electricity in Indonesia). now i have my predicted electricity price from those 2 points of time.After recieving the value i simply did another write function and send it to influxdb. Then added the data to my dashboard. And Voila..!! our project is finish
+
+as a side note the final step is repeatable if your implementint it on  multiple electrical meter you just have to change the filter name so the data doesnt overlap and then you can add the newly added meter usage and price to your dashboard. 
+
+```
+query_api = client.query_api()
+        
+        #note :change query1 range to 1d 
+        query1 = ' from(bucket:"electricalmeter/autogen")\
+        |> range(start: -5m)\
+        |> filter(fn:(r) => r._measurement == "kWh")\
+        |> filter(fn: (r) => r._field == "display_usage")\
+        |> filter(fn:(r) => r.meter == "meter1" ) \
+        |> last()'
+
+        query2 = ' from(bucket:"electricalmeter/autogen")\
+        |> range(start: -1m)\
+        |> filter(fn:(r) => r._measurement == "kWh")\
+        |> filter(fn: (r) => r._field == "display_usage")\
+        |> filter(fn:(r) => r._meter == "meter1" )\
+        |> last() \
+        |> fill(usePrevious:true)'
+        
+        result1 = client.query_api().query(org=org, query=query1)
+        results1 = []
+        for table in result1:
+            for record in table.records:
+                results1.append(record.get_value())
+        #print(results1[0])
+        
+        result2 = client.query_api().query(org=org, query=query2)
+        results2 = []
+        for table in result1:
+            for record in table.records:
+                results2.append(record.get_value())
+        #print(results2[0])
+        
+        #diffrence between usage
+        diff = results2[0]-results1[0]
+        usage = diff * 1444.70
+        
+        print(usage)
+        
+        #write usage to a new point at influxdb database
+        with InfluxDBClient(url="http://localhost:8086", token=token, org=org) as client:
+    
+            write_api = client.write_api(write_options=SYNCHRONOUS)
+            
+            point = Point("idr_usage") \
+              .tag("idr_meter", "idr_meter1") \
+              .field("idr_usage", usage) \
+              .time(datetime.utcnow(), WritePrecision.NS)
+```
  
+ ### video 
  
+ > https://www.youtube.com/watch?v=3J8PI_9Glq4
+
+
+## Thank you
+
+this project is intended as a final year project of a 4th year bachelor student there maybe errors and mistakes i made or even a better approach to the solution therefore feel free to comment and thank you for referring or just even reading the repo :smile:
  
