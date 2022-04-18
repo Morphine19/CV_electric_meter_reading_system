@@ -16,7 +16,7 @@ As we can see the final flowchart is developed,but this is not the first iterati
 
 ## video
 
-*video goes here*
+> https://youtu.be/Ik0jLcjS_ec
 
 # Methodology
 
@@ -46,23 +46,23 @@ There are many single board computer that we can use for the system such as the 
 3. monitor keyboard and mouse.
 4. Computer with any types of OS (Windows, Mac, linux and even raspbian OS)
 
-first, we need to download and install the raspbian imager from the website
+*Step 1*, we need to download and install the raspbian imager from the website
 
 >https://www.raspberrypi.com/software/
 
-second, we need to plug in our microSD card to the computer. you may need to use an adapter or even a card reader if you dont have any memory card slot in your PC.
+*Step 2*, we need to plug in our microSD card to the computer. you may need to use an adapter or even a card reader if you dont have any memory card slot in your PC.
 
-third, we can now open the installed application and choose raspbian OS , choose your storage device in our case it will be the SD card and finally we can click image and the process of installation will start, this will took you about 10-30 minutes depending on your computer and internet speed. so be patient.....
+*Step 3*, we can now open the installed application and choose raspbian OS , choose your storage device in our case it will be the SD card and finally we can click image and the process of installation will start, this will took you about 10-30 minutes depending on your computer and internet speed. so be patient.....
 
-after finish burnign raspbian to the sd card insert the SD card to the raspberry pi and finally we can run the raspberry pi. after plugging the raspberypi to the monitor you will be prompted with the startup session from raspberry pi where you need to determine your timezone and your credetials which is important.
+after finish burnign raspbian to the sd card insert the SD card to the raspberry pi and finally we can run the raspberry pi. connect the raspbery pi to the monitor you will be prompted with the startup session from raspberry pi where you need to determine your timezone and your credetials which is important.
 
 ### Video
 
-*video goes here*
+>https://youtu.be/Y6cqtMZOAyg
 
 ### installing VNC viewer 
 
-depending on your situatuion you may or may not need to use VNC viewer. If you dont know what VNC viewer is basically a remote control access for your computer so that your able to work on your raspi from your pc ,which is more convinient for some people.
+Depending on your situatuion you may or may not need to use VNC viewer. If you dont know what VNC viewer is basically a remote control access for your computer so that your able to work on your raspi from your pc ,which is more convinient for some people.
 
 to install the vnc viewer first we need to go to the raspbian console and type 
 
@@ -90,7 +90,7 @@ now you may access your raspi from your own PC. The issue i face while using VNC
 
 OpenCV is a library that contain functions that are focused on Computer vision application. To install OpenCV on your raspi its really simple.
 
-first we need to install pip by running the following commands on the raspi terminal 
+*step 1* we need to install pip by running the following commands on the raspi terminal 
 
 > mkdir ~/src && cd ~/src
 > 
@@ -98,7 +98,7 @@ first we need to install pip by running the following commands on the raspi term
 >
 >$ sudo python3 get-pip.py
 
-after installing pip we now just have to install the OpenCV by using the following command
+*step 2* after installing pip we now just have to install the OpenCV by using the following command
 
 >sudo pip install opencv-contrib-python
 
@@ -106,7 +106,7 @@ the console will load and ask do you want to install the following packages just
 
 ### video 
 
-*video goes here*
+> https://youtu.be/z_tQoLBmDqw
 
 
 ##  Accesing the webcam Via OpenCV operators
@@ -155,15 +155,15 @@ while (cap.isOpened()):
 
 to end the loop we will use this command the code basically will break the loop if press the 'q' alphabet
 ```
-	if cv.waitKey(25) & 0xFF == ord('q'):
-		break
+if cv.waitKey(25) & 0xFF == ord('q'):
+	break
 ```
 now in the commands we add next wil be added in between the loop 
 
 to Capture frame-by-frame
 
 ```	
-	ret, frame = cap.read()
+ret, frame = cap.read()
 ```
 
 now to display it we will use cv imshow which is a function to display image 
@@ -174,9 +174,28 @@ cv.imshow('frame', crop)
 
 now if you done it right you should see the input of the video in python
 
+your full code should look like this
+
+```
+import cv2 as cv
+
+cap = cv.VideoCapture('0')
+
+while (cap.isOpened()):
+
+	ret, frame = cap.read()		
+
+	cv.imshow('frame', crop)
+	
+	if cv.waitKey(25) & 0xFF == ord('q'):
+		break
+		
+cv.destroyAllWindows()
+```
+
 ### video
 
-*viddeo goes here*
+>https://youtu.be/z_tQoLBmDqw
 
 
 ## Hardware setup
@@ -243,19 +262,19 @@ This will crop the video depending on the values that are given in the bracket. 
 
 ### video
 
-*video goes here*
+> https://youtu.be/SOdZZuobItI
 
 
 ## Preprocessing
 
 In general preprocessing is *the steps taken to format images before they are used by model training and inference* . To preprocess an image or video in our case its quite variative again depending on what you have as source. We also need to consider the tips i write because itll help us significantly. Since the topic of preprocessing is so broad i will only discuss the function i used in my system. 
 
-To easily use the preprocessing function i create another python file called utility.py. since the function we will be using has several paramater that we can freely adjust it is a good habit to do this and create 'def' for each function so we can easily adjust the parameter from the function and keep our main.py neat.
+To easily use the preprocessing function i create another python file called `utility.py`. since the function we will be using has several paramater that we can freely adjust it is a good habit to do this and create `def` for each function so we can easily adjust the parameter from the function and keep our main.py neat.
 
 
 ### Rotating the image
 
-by following the tips we have it ill start by addressing the angle since mine input video is a bit tilted ill be using the following function :
+by following the tips we have it i'll start by addressing the angle since my input video is a bit tilted ill be using the following function :
 
 ```
 def rotate(image):
@@ -284,9 +303,9 @@ the following code basically help us to determine the center of the image this s
     
 ```
 
-the next part of the is divided into 2 part the cv.geRotationMatrix2D is used to make the transformation matrix M which will be used for rotating a image
-then the cv.warpAfine is used to rotate the image referring to the rotation matrix 
-(within the function there is a variable *angle* we adjust the values depending on what values you need)
+the next part of the is divided into 2 part the `cv.geRotationMatrix2D` is used to make the transformation matrix M which will be used for rotating a image
+then the `cv.warpAfine` is used to rotate the image referring to the rotation matrix 
+(within the function there is a variable `angle` we adjust the values depending on what values you need)
 
 ```
     angle = 2
@@ -310,7 +329,7 @@ def grayscale(image) :
     return gray
 ```
 
-The code to covert the image to graysclae is really simple we use cv.cvtColor function then we added the source which is our video input and set the color to cv.COLOR_BGR2GRAY which converts the color from BGR which is the normal color format from opencv to grayscale.
+The code to covert the image to graysclae is really simple we use `cv.cvtColor` function then we added the source which is our video input and set the color to `cv.COLOR_BGR2GRAY` which converts the color from BGR (which is the normal) color format from opencv to grayscale.
 
 
 ### Thresholding an image/video
@@ -329,9 +348,42 @@ def thresholding(image):
 ```
 the most important value to adjust when you're thresholding is to adjust the thresholValue variable, you can start with 100 and add more if your object is still unclear and decrease it when the it when it started to detected noises.
 
-as a side note in the code i use a diffrent type of thresholding which is the inverse thresholding, the result is the reverse of the normal result which will make the object is darker color and white background which is recomendded it the tips section.You may need to adjust the type to thresholding depending on what type of object your working with for more info on thresholding this is the website you can refer  to :
+as a side note in the code i use a diffrent type of thresholding which is the `inverse thresholding`, the result is the reverse of the normal result which will make the object is darker color and white background which is recomendded it the tips section.You may need to adjust the type to thresholding depending on what type of object your working with for more info on thresholding this is the website you can refer to :
 
 >https://www.geeksforgeeks.org/python-thresholding-techniques-using-opencv-set-1-simple-thresholding/
+
+### where to put this functions?
+
+you should put your preprocessing functions inside the `while` loop. and before the `cv.imshow` , your code should look more or less like this in your `main.py` :
+
+```
+import cv2 as cv
+
+#here were importing the functions we have in the utility.py
+from utility import *
+
+cap = cv.VideoCapture('0')
+
+while (cap.isOpened()):
+
+	ret, frame = cap.read()	
+	
+	    crop = frame[300:500,50:1000] 
+
+	    
+	    rotation = rotate(crop)
+	    grasycale_Image = grayscale(rotation)
+	    thresholdimage   = inverse_thresholding(grasycale_Image)
+
+	cv.imshow('frame', thresholdimage)
+	
+	if cv.waitKey(25) & 0xFF == ord('q'):
+		break
+		
+cv.destroyAllWindows()
+```
+inside `utility.py`:
+
 
 ### video
 
