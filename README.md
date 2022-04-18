@@ -197,7 +197,32 @@ This part only shows you the view from my webcam to the device .
 
 From the input we reciveve from the video before we are intrested only on recieving the usage box. To do so were going to use several OpenCV functions.
 
-First we open the 
+First we open the previous python file (the one we made at 'Accesing the camera using OpenCV operator in python')
+
+then inside the loop and before *cv.imshow* function were going to add several line of codes 
+
+To find the resolution of our video we use the following:
+
+> print('resolution',frame.shape)
+
+now we can compile and run the code 
+
+in the python console we can see our reolution mine printed
+
+>resolution (720, 1280, 3)
+
+now that we know the resolution of our image we can crop the area were intrested in,to do that :
+
+> crop = frame [0:720,0:1080]
+
+this will crop the video depending on the values that are given in the bracket. and you will need to adjust this accordingly depending on your input and the place of your usage box. Remember the reolution we achieve on the first code that is important since we can register value above it since it will cause an error.
+
+### video
+
+*video goes here*
+
+
+## Preprocessing
 
 
 
