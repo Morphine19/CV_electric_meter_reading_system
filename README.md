@@ -529,5 +529,24 @@ if theres no problem you should be prompted with the influxdb page and now what 
 To do this we head to our python and import 2 library:
 
 ```
+from datetime import datetime
+
+from influxdb_client import InfluxDBClient, Point, WritePrecision
+from influxdb_client.client.write_api import SYNCHRONOUS
+```
+
+The first library `datetime` will give time and date that we will need for our time series database.
+The second library `influxdb_client` is function we will need later to write and call data from our buckets
+
+now that is setup we can now put our credentials by assigning them to a variable,
 
 ```
+token = "your token"
+org = "your organization"
+bucket = "your bucket
+```
+
+`token` can be recieve from the influxdb interface (load data -> generate API token)
+`org` is the organization you register when you sign up 
+`bucket` you can create a bucket and name it anything you want from the API (load data -> buckets -> create bucket)
+
