@@ -137,30 +137,40 @@ in your ide i use genie on raspi
 
 impor the opencv
 
->import cv2 as cv
+```
+import cv2 as cv
+```
 
 next we will use video capture to read the video
 
->cap = cv.VideoCapture('0')
+```
+cap = cv.VideoCapture('0')
+```
 
 now we create a loop for showing the video .
 
-> while (cap.isOpened()):
+```
+while (cap.isOpened()):
+```
 
 to end the loop we will use this command the code basically will break the loop if press the 'q' alphabet
-
->	if cv.waitKey(25) & 0xFF == ord('q'):
+```
+	if cv.waitKey(25) & 0xFF == ord('q'):
 		break
-
+```
 now in the commands we add next wil be added in between the loop 
 
 to Capture frame-by-frame
-	
-> ret, frame = cap.read()
+
+```	
+	ret, frame = cap.read()
+```
 
 now to display it we will use cv imshow which is a function to display image 
 
->cv.imshow('frame', crop)
+```
+cv.imshow('frame', crop)
+```
 
 now if you done it right you should see the input of the video in python
 
@@ -211,17 +221,23 @@ then inside the loop and before *cv.imshow* function were going to add several l
 
 To find the resolution of our video we use the following:
 
-> print('resolution',frame.shape)
+```
+ print('resolution',frame.shape)
+```
 
 now we can compile and run the code 
 
 in the python console we can see our reolution mine printed
 
->resolution (720, 1280, 3)
+```
+resolution (720, 1280, 3)
+```
 
 now that we know the resolution of our image we can crop the area were intrested in,to do that :
 
-> crop = frame [0:720,0:1080]
+```
+crop = frame [0:720,0:1080]
+```
 
 This will crop the video depending on the values that are given in the bracket. and you will need to adjust this accordingly depending on your input and the place of your usage box. Remember the reolution we achieve on the first code that is important since we can register value above it since it will cause an error.
 
@@ -403,4 +419,13 @@ now that influxdb is successfully installed we can set the enable and start the 
 >sudo systemctl enable influxdb
 >sudo systemctl start influxdb
 
-now that we have installed influxdb we just have to access it by typing `http://localhost:8086`  in your *BROWSER* not console  
+now that we have installed influxdb we just have to access it by typing `http://localhost:8086`  in your *BROWSER* not console.
+
+if theres no problem you should be prompted with the influxdb page and now what you have to is just to sign in or sign up.
+
+
+### video
+
+*video goes here*
+
+## Incoperating influxdb with the system 
