@@ -8,11 +8,11 @@ This repo contributes to show the process and step by step on my approach to an 
 
 The Following is the flowchart that ill be using for Iot System, the system is divided to several steps which can see on the image below :
   
-  *final flowchart image goes here*
+![Flowchart revised](https://user-images.githubusercontent.com/75777945/163837103-8c28681d-e1b7-44f1-8e55-3f24fad8f2b8.png)
   
 As we can see the final flowchart is developed,but this is not the first iteration of the flowchart is a bit diffrent we can it from the image below, tht the unrevised version of the flowchart has a step where we implemented YOLO algorithm to the system but due to the limitation of the project it is concluded that it is better to design the system for a specific single phase electrical meter which is the MSI-200 which is own by the PLN(*pembangkit listrik negara*).This type of meter is really common isntalled among the household in Indonesia.
 
-*comparison between flowchart*
+![COMPARISON](https://user-images.githubusercontent.com/75777945/163837178-7948b502-c9c3-4835-b6c5-4d3a672d18dd.png)
 
 ## video
 
