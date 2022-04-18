@@ -27,7 +27,7 @@ The Methodology is the part where i show you my progress the system for your own
 3. Accesing the webcam Via OpenCV operators
 4. Hardware setup
 5. Camera input from the device
-6. ROI cropping
+6. ROI 
 7. Preprocessing
 8. Tesseract installation and configuration
 9. Installing Influxdb
@@ -188,7 +188,16 @@ Another important point  is setting the focus of the camera you might have to tr
 
 ## Camera input from the device
 
+This part only shows you the view from my webcam to the device .
 
+*video goes here*
+
+
+## ROI
+
+From the input we reciveve from the video before we are intrested only on recieving the usage box. To do so were going to use several OpenCV functions.
+
+First we open the 
 
 
 
