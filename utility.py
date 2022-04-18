@@ -1,5 +1,5 @@
 import  cv2     as cv 
-import pytesseract
+
 
 #convert image to grayscale 
 
