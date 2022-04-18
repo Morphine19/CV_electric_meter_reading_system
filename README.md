@@ -278,7 +278,7 @@ then the cv.warpAfine is used to rotate the image referring to the rotation matr
     rotated = cv.warpAffine(image, M, (w, h))
 ```
 
-### grayscale an image
+### grayscale an image/video
 
 The next step we will be grayscaling the image, because considering the following step which is the preprocessing the thresholding. The purpose of grayscaling an image or video in a computer vision setup is to decreases processing needs and simplifies the algorithm Color adds to the model's complexity by supplying unneeded information.
 
@@ -287,8 +287,9 @@ here are the function we use to grayscale an image to :
 ```
 def grayscale(image) :
     src = image
-
-    gray = cv.cvtColor(src,cv.COLOR_BGR2GRAY)
+    
+    type=r'cv.COLOR_BGR2GRAY'
+    gray = cv.cvtColor(src,type)
 
     return gray
 ```
@@ -296,7 +297,102 @@ def grayscale(image) :
 The code to covert the image to graysclae is really simple we use cv.cvtColor function then we added the source which is our video input and set the color to cv.COLOR_BGR2GRAY which converts the color from BGR which is the normal color format from opencv to grayscale.
 
 
+### Thresholding an image/video
   
-  
+the next  and final preprocessing step is the thresholding,Thresholding is a segmentation technique, used for separating an object considered as a object from its background.There are many types of thresholding but to implement it we are using the same code :
+
+```
+def thresholding(image):
+    src =image
+    thresholdValue =  155
+    maxVal = 255
+
+    ret,thresh = cv.threshold(src, thresholdValue, maxVal, cv.THRESH_BINARY ) 
+    
+    return thresh
+```
+the most important value to adjust when you're thresholding is to adjust the thresholValue variable, you can start with 100 and add more if your object is still unclear and decrease it when the it when it started to detected noises.
+
+as a side note in the code i use a diffrent type of thresholding which is the inverse thresholding, the result is the reverse of the normal result which will make the object is darker color and white background which is recomendded it the tips section.You may need to adjust the type to thresholding depending on what type of object your working with for more info on thresholding this is the website you can refer  to :
+
+>https://www.geeksforgeeks.org/python-thresholding-techniques-using-opencv-set-1-simple-thresholding/
+
+### video
+
+*video goes here*
 
 
+## Tesseract installation and configuration
+
+Tesseract is an OCR(optical character recognition engine) that is developed by google.
+
+### installation
+
+This installation guide is for installing TesseractOCR in raspbian OS.
+
+in the raspbian OS console type :
+
+> sudo apt install tesseract OCR
+
+this will install the tesseract main API,next were going to install the python wrapper for tesseract:
+
+>sudo pip install pytesseract
+
+if you want to ensure that tesseract you can run the following command and it will show you that tesseract installed with its version
+
+>tesseract --version
+
+### tesseract configuration
+
+since we have done the preprocessing for the image this step will be really simple :
+
+first we need to import the tesseract to our system :
+
+```
+import pytesseract
+```
+
+now inside the loop where we preprocessed the image we  can add the image.to.string syntax. this syntax is the default command use to convert an image inside a image.  
+
+```
+custom_config = r' -l digits --psm 7'
+text=pytesseract.image_to_string(threholdimage, config=custom_config)
+print(text)
+```
+
+The image to string syntax takes 2 variable which is the source which will be our preprocessed video and the config, there are alost of configuration you can use for this what i used is 2 really simple configuration which is `-l digits` to set tesseract to only expect numeric value and `--psm 7` psm Page Segmentation Modes, there are many type of segmentation mode you can set the system to,particularly psm 7 sets the tesseract to detect in a sigle word in a single line.
+
+
+![result](https://user-images.githubusercontent.com/75777945/163777073-5c504f76-58e7-4500-a35a-deac862434c2.JPG)
+
+from the results we can see that there is a space and a ♀ symbol in between the readings,this actually how tesseract marks between readings by giving a page sement with the following symbol to remove the symbol we can use the following code to replace the space and the symbol to a void value.
+
+```
+    text=text.replace(" ","")
+    text=text.replace("\n","")
+    text=text.replace("\x0c","")
+```
+
+place the following code before the printing the image and you have a clear readingg without any interuptions. 
+
+As a side note if you want to know how i know which value to replace with the void value i use `repr` before the `print(repr(text))` to represent the returns printable representation of the given object.
+
+### video 
+
+*video goes here*
+
+## Installing Influxdb 
+
+to install ifuxdb here are the following steps inside the raspbian OS terminal :
+
+first we meed to copy the influxdb repo key
+
+>curl https://repos.influxdata.com/influxdb.key | gpg --dearmor | sudo tee /usr/share/keyrings/influxdb-archive-keyring.gpg >/dev/null
+
+Now that we have the InfluxDB repository key installed to our Raspberry Pi, we will need to go ahead and add its repository to the sources list
+
+>echo "deb [signed-by=/usr/share/keyrings/influxdb-archive-keyring.gpg] https://repos.influxdata.com/debian $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/influxdb.list
+
+now thats done we can now install infludb
+
+> 
