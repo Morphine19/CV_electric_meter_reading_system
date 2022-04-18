@@ -192,6 +192,14 @@ This part only shows you the view from my webcam to the device .
 
 *video goes here*
 
+## Tips
+
+Here are 3 tips that can you need to consider while preprocessing the input for Tesseract :
+
+1. The image is in black and white (binarize). and preferably tesseract will read the image better if the text is in the darker color (black) and lighter background (white). 
+2. You should leave some space from the image why? necause the system actualy try to detect the empty area therefore we can recieve a better results.
+3. Fixing the angle is important, Imagine yourself reading a book in an odd angle it will be hard to read right? similar to tesseract the API will also be confuse and can lead to unwanted results if we dont fix the angle.
+
 
 ## ROI
 
@@ -215,7 +223,7 @@ now that we know the resolution of our image we can crop the area were intrested
 
 > crop = frame [0:720,0:1080]
 
-this will crop the video depending on the values that are given in the bracket. and you will need to adjust this accordingly depending on your input and the place of your usage box. Remember the reolution we achieve on the first code that is important since we can register value above it since it will cause an error.
+This will crop the video depending on the values that are given in the bracket. and you will need to adjust this accordingly depending on your input and the place of your usage box. Remember the reolution we achieve on the first code that is important since we can register value above it since it will cause an error.
 
 ### video
 
@@ -223,6 +231,40 @@ this will crop the video depending on the values that are given in the bracket. 
 
 
 ## Preprocessing
+
+In general preprocessing is *the steps taken to format images before they are used by model training and inference* . To preprocess an image or video in our case its quite variative again depending on what you have as source. We also need to consider the tips i write because itll help us significantly. Since the topic of preprocessing is so broad i will only discuss the function i used in my system. 
+
+To easily use the preprocessing function i create another python file called utility.py. since the function we will be using has several paramater that we can freely adjust it is a good habit to do this and create 'def' for each function so we can easily adjust the parameter from the function and keep our main.py neat.
+
+by following the tips we have it ill start by addressing the angle since mine input video is a bit tilted ill be using the following function :
+
+```
+def rotate(image):
+
+    src=image
+    
+    (h, w) = image.shape[:2]
+    (cX, cY) = (w // 2, h // 2)
+
+   
+    angle = 2
+    M = cv.getRotationMatrix2D((cX, cY), angle, 1.0)
+    rotated = cv.warpAffine(image, M, (w, h))
+
+    return rotated
+```
+
+to clarify the code above here is a short explanation of the code :
+
+the following code basically help us to determine the center of the image this step is important 
+
+```
+    (h, w) = image.shape[:2]
+    (cX, cY) = (w // 2, h // 2)
+    
+```
+
+
 
 
 
