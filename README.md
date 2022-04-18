@@ -384,10 +384,45 @@ cv.destroyAllWindows()
 ```
 inside `utility.py`:
 
+```
+def grayscale(image) :
+    src = image
 
+    gray = cv.cvtColor(src,cv.COLOR_BGR2GRAY)
+
+    return gray
+
+
+def inverse_thresholding(image):
+    src =image
+    thresholdValue =  170 #93
+    maxVal = 255
+
+    ret,inversethresh = cv.threshold(src, thresholdValue, maxVal, cv.THRESH_BINARY_INV ) 
+    
+    return inversethresh
+
+
+
+def rotate(image):
+
+    src=image
+    
+    # grab the dimensions of the image and calculate the center of the image
+    (h, w) = image.shape[:2]
+    (cX, cY) = (w // 2, h // 2)
+
+    # rotate our image by -90 degrees around the image
+    angle = 2
+    M = cv.getRotationMatrix2D((cX, cY), angle, 1.0)
+    rotated = cv.warpAffine(image, M, (w, h))
+
+    return rotated
+cv.waitKey(0)
+```
 ### video
 
-*video goes here*
+>https://youtu.be/S-5iZz4gRbk
 
 
 ## Tesseract installation and configuration
@@ -447,7 +482,7 @@ As a side note if you want to know how i know which value to replace with the vo
 
 ### video 
 
-*video goes here*
+>https://youtu.be/wdkACPkJVGw
 
 ## Installing Influxdb 
 
@@ -471,14 +506,23 @@ now that influxdb is successfully installed we can set the enable and start the 
 >sudo systemctl enable influxdb
 >sudo systemctl start influxdb
 
+following that we also need to install the CLI :
+
+>sudo apt install -y influxdb2-cli
+
+after the installation completed you need to restart your Raspi. (logout-->reboot)
+
+After finished we need to setup influxdb :
+
+>sudo apt install -y influxdb2-cli
+
 now that we have installed influxdb we just have to access it by typing `http://localhost:8086`  in your *BROWSER* not console.
 
 if theres no problem you should be prompted with the influxdb page and now what you have to is just to sign in or sign up.
 
-
 ### video
 
-*video goes here*
+>https://youtu.be/Znhdrnwsn50
 
 ## Incoperating influxdb with the system 
 
