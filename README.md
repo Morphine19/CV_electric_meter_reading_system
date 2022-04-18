@@ -526,4 +526,8 @@ if theres no problem you should be prompted with the influxdb page and now what 
 
 ## Incoperating influxdb with the system 
 
+To do this we head to our python and import 2 library:
 
+```
+
+```
