@@ -536,7 +536,8 @@ from influxdb_client.client.write_api import SYNCHRONOUS
 ```
 
 The first library `datetime` will give time and date that we will need for our time series database.
-The second library `influxdb_client` is function we will need later to write and call data from our buckets
+
+The second library `influxdb_client` is function we will need later to write and call data from our bucket.
 
 now that is setup we can now put our credentials by assigning them to a variable,
 
@@ -547,6 +548,56 @@ bucket = "your bucket
 ```
 
 `token` can be recieve from the influxdb interface (load data -> generate API token)
-`org` is the organization you register when you sign up 
+
+`org` is the organization you register when you sign up
+
 `bucket` you can create a bucket and name it anything you want from the API (load data -> buckets -> create bucket)
 
+now were going to create the function that is going to `write` the data from our computer vision setup to our future dashboard :
+
+```
+    with InfluxDBClient(url="http://localhost:8086", token=token, org=org) as client:
+    
+        write_api = client.write_api(write_options=SYNCHRONOUS)
+        
+        point = Point("kWh") \
+          .tag("meter", "meter1") \
+          .field("display_usage", text_int) \
+          .time(datetime.utcnow(), WritePrecision.NS)
+
+        write_api.write(bucket, org, point)
+```
+
+lets go through the code line by line :
+
+The following setup and log us in to the influxdb by using our `url`,`token` and `org` 
+
+```
+ with InfluxDBClient(url="http://localhost:8086", token=token, org=org) as client:
+ ```
+ 
+ Since were writing data to the were going to use `client.write_api` :
+ 
+ ```
+ write_api = client.write_api(write_options=SYNCHRONOUS)
+ ```
+ 
+ next we need to name the data were sendind by assigning `tag` , `field` and `time`:
+ 
+ ```
+         point = Point("kWh") \
+          .tag("meter", "meter1") \
+          .field("display_usage", text_int) \
+          .time(datetime.utcnow(), WritePrecision.NS)
+ ```
+ 
+ The format that we use to assign this parameter is not python but actualy in fluxsql for more info you can check out on the influxdb2 official documentation.
+ 
+ > https://docs.influxdata.com/influxdb/v2.2/
+
+now that we can write a data into the influxdb now we will try to check if it reach the other end of the system
+
+first log in to influxdb API and head to data explorer 
+ 
+ 
+ 
