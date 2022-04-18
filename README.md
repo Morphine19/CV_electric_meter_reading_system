@@ -429,3 +429,5 @@ if theres no problem you should be prompted with the influxdb page and now what 
 *video goes here*
 
 ## Incoperating influxdb with the system 
+
+
