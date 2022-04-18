@@ -236,6 +236,9 @@ In general preprocessing is *the steps taken to format images before they are us
 
 To easily use the preprocessing function i create another python file called utility.py. since the function we will be using has several paramater that we can freely adjust it is a good habit to do this and create 'def' for each function so we can easily adjust the parameter from the function and keep our main.py neat.
 
+
+### Rotating the image
+
 by following the tips we have it ill start by addressing the angle since mine input video is a bit tilted ill be using the following function :
 
 ```
@@ -256,7 +259,8 @@ def rotate(image):
 
 to clarify the code above here is a short explanation of the code :
 
-the following code basically help us to determine the center of the image this step is important 
+the following code basically help us to determine the center of the image this step is important because we ant to rotate the image from its center
+
 
 ```
     (h, w) = image.shape[:2]
@@ -264,10 +268,32 @@ the following code basically help us to determine the center of the image this s
     
 ```
 
+the next part of the is divided into 2 part the cv.geRotationMatrix2D is used to make the transformation matrix M which will be used for rotating a image
+then the cv.warpAfine is used to rotate the image referring to the rotation matrix 
+(within the function there is a variable *angle* we adjust the values depending on what values you need)
 
+```
+    angle = 2
+    M = cv.getRotationMatrix2D((cX, cY), angle, 1.0)
+    rotated = cv.warpAffine(image, M, (w, h))
+```
 
+### grayscale an image
 
+The next step we will be grayscaling the image, because considering the following step which is the preprocessing the thresholding. The purpose of grayscaling an image or video in a computer vision setup is to decreases processing needs and simplifies the algorithm Color adds to the model's complexity by supplying unneeded information.
 
+here are the function we use to grayscale an image to :
+
+```
+def grayscale(image) :
+    src = image
+
+    gray = cv.cvtColor(src,cv.COLOR_BGR2GRAY)
+
+    return gray
+```
+
+The code to covert the image to graysclae is really simple we use cv.cvtColor function then we added the source which is our video input and set the color to cv.COLOR_BGR2GRAY which converts the color from BGR which is the normal color format from opencv to grayscale.
 
 
   
